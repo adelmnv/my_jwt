@@ -22,7 +22,6 @@ public class JwtService {
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
     }
-
     public Date extractDateExpiration(String token){
         return extractClaim(token, Claims::getExpiration);
     }
@@ -38,7 +37,6 @@ public class JwtService {
     }
 
     private boolean isTokenExpired(String token) {
-
         return extractDateExpiration(token).before(new Date());
     }
 

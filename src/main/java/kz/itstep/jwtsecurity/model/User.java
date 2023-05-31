@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 public class User implements UserDetails {
     @Id
     private Long id;
-
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
     private String authorities;
