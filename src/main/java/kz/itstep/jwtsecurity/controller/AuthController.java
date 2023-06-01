@@ -8,15 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/auth/")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
     private AuthorizationService authorizationService;
     @PostMapping("/register")
     public ResponseEntity<AuthorizationResponse> register(@RequestBody RegisterRequest registerRequest){
         return ResponseEntity.ok(authorizationService.register(registerRequest));
     }
-    @PostMapping("/register")
-    public ResponseEntity<AuthorizationResponse> register(@RequestBody AuthorizationRequest authorizationRequest){
+    @PostMapping("/authorize")
+    public ResponseEntity<AuthorizationResponse> authorize(@RequestBody AuthorizationRequest authorizationRequest){
         return ResponseEntity.ok(authorizationService.authorize(authorizationRequest));
     }
 }

@@ -1,7 +1,6 @@
 package kz.itstep.jwtsecurity.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,14 +14,24 @@ import java.util.stream.Collectors;
 @Entity
 @Data
 @RequiredArgsConstructor
+@Table(name = "_user")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String authorities;
+
+    public User(String firstName, String lastName, String email, String password, String authorities) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
