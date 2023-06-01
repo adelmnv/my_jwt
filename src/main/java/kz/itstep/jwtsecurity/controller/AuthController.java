@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
-    private AuthorizationService authorizationService;
+    private final AuthorizationService authorizationService;
+
+    public AuthController(AuthorizationService authorizationService) {
+        this.authorizationService = authorizationService;
+    }
+
     @PostMapping("/register")
     public ResponseEntity<AuthorizationResponse> register(@RequestBody RegisterRequest registerRequest){
         return ResponseEntity.ok(authorizationService.register(registerRequest));
