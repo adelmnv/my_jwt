@@ -1,9 +1,9 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/adb
-    username: cuba
-    password: cuba
+    url: jdbc:postgresql://localhost:5432/library
+    username: adel
+    password: mal280404
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

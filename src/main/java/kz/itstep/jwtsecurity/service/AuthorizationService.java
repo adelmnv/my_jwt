@@ -30,6 +30,7 @@ public class AuthorizationService {
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setFirstName(registerRequest.getFirstName());
         user.setLastName(registerRequest.getLastName());
+
         user.setAuthorities("USER");
 
         userRepository.save(user);
@@ -41,7 +42,7 @@ public class AuthorizationService {
 
     public AuthorizationResponse authorize(AuthorizationRequest authorizationRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authorizationRequest.getLogin(), authorizationRequest.getPassword()));
-        User user = userRepository.findUserByEmail(authorizationRequest.getLogin()).orElseThrow(()-> new RuntimeException("smth went wrong"));
+        User user = (User) userRepository.findUserByEmail(authorizationRequest.getLogin()).orElseThrow(()-> new RuntimeException("smth went wrong"));
 
         String jwt = jwtService.generateToken(user);
         return new AuthorizationResponse(jwt);
